@@ -30,12 +30,10 @@ namespace CSharpShowDijkstraWorking {
                         newPath = true;
                     }
                 }
-                //if (mData.LeftButtonPressed) {
-                    Vector2D lVector = getVector(mData.PixelX, mData.PixelY, map.AllNodes);
-                    if ((lVector != null)&&(map.SourceVector != lVector)&&(map.SourceVector != null)) {
-                        path = map.retrieveShortestPath(lVector);
-                    }
-                //}
+                Vector2D lVector = getVector(mData.PixelX, mData.PixelY, map.AllNodes);
+                if ((lVector != null)&&(map.SourceVector != lVector)&&(map.SourceVector != null)) {
+                    path = map.retrieveShortestPath(lVector);
+                }
             } while (!TCODConsole.isWindowClosed());
         }
         static Graph makeMap() {
