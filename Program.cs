@@ -19,8 +19,7 @@ namespace CSharpShowDijkstraWorking {
             bool newPath = false;
             do {
                 if (newPath) {
-                    map.calculateShortestPath();
-                    newPath = false;
+                    newPath = !map.calculateShortestPath();
                 }
                 drawMap(map.AllNodes, path);
                 mData = TCODMouse.getStatus();
@@ -31,13 +30,12 @@ namespace CSharpShowDijkstraWorking {
                         newPath = true;
                     }
                 }
-                if (mData.LeftButtonPressed) {
+                //if (mData.LeftButtonPressed) {
                     Vector2D lVector = getVector(mData.PixelX, mData.PixelY, map.AllNodes);
                     if ((lVector != null)&&(map.SourceVector != lVector)&&(map.SourceVector != null)) {
                         path = map.retrieveShortestPath(lVector);
-                        newPath = true;
                     }
-                }
+                //}
             } while (!TCODConsole.isWindowClosed());
         }
         static Graph makeMap() {
