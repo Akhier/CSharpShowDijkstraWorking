@@ -35,6 +35,10 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CSharpDijkstraAlgorithm, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\CSharpDijkstraAlgorithm.dll</HintPath>
+    </Reference>
     <Reference Include="CSharpHelperCode, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\CSharpHelperCode.dll</HintPath>
