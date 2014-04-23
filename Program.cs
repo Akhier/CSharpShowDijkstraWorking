@@ -10,9 +10,9 @@ using CSharpSimpleMapGen;
 using CSharpDijkstraAlgorithm;
 namespace CSharpShowDijkstraWorking {
     class Program {
-        const int windowWidth = 100, windowLength = 100;
+        const int windowWidth = 80, windowHeight = 50;
         static void Main(string[] args) {
-            TCODConsole.initRoot(windowWidth, windowLength, "Showing Dijkstra Algorithm Working");
+            TCODConsole.initRoot(windowWidth, windowHeight, "Showing Dijkstra Algorithm Working");
             TCODSystem.setFps(30);
             Graph map = makeMap();
             TCODMouseData mData = TCODMouse.getStatus();
@@ -39,9 +39,9 @@ namespace CSharpShowDijkstraWorking {
         }
         static Graph makeMap() {
             Graph output = new Graph();
-            bool[,] boolMap = MapGen.newMap(windowWidth, windowLength, true);
-            Vector2D[,] vectorMap = new Vector2D[windowWidth, windowLength];
-            for (int column = 0; column < windowLength; column++) {
+            bool[,] boolMap = MapGen.newMap(windowWidth, windowHeight, true);
+            Vector2D[,] vectorMap = new Vector2D[windowWidth, windowHeight];
+            for (int column = 0; column < windowHeight; column++) {
                 for (int row = 0; row < windowWidth; row++) {
                     if (boolMap[row, column]) {
                         vectorMap[row, column] = new Vector2D(row, column, false);
@@ -49,15 +49,11 @@ namespace CSharpShowDijkstraWorking {
                     }
                 }
             }
-            for (int column = 1; column < windowLength-1; column++) {
+            for (int column = 1; column < windowHeight-1; column++) {
                 for (int row = 1; row < windowWidth-1; row++) {
                     if (boolMap[row, column]) {
-                        if (boolMap[row - 1, column - 1]) { output.addEdge(new Edge(vectorMap[row, column], vectorMap[row - 1, column - 1], 11)); }
-                        if (boolMap[row - 1, column]) { output.addEdge(new Edge(vectorMap[row, column], vectorMap[row - 1, column], 10)); }
                         if (boolMap[row - 1, column + 1]) { output.addEdge(new Edge(vectorMap[row, column], vectorMap[row - 1, column + 1], 11)); }
-                        if (boolMap[row, column - 1]) { output.addEdge(new Edge(vectorMap[row, column], vectorMap[row, column - 1], 10)); }
                         if (boolMap[row, column + 1]) { output.addEdge(new Edge(vectorMap[row, column], vectorMap[row, column + 1], 10)); }
-                        if (boolMap[row + 1, column - 1]) { output.addEdge(new Edge(vectorMap[row, column], vectorMap[row + 1, column - 1], 11)); }
                         if (boolMap[row + 1, column]) { output.addEdge(new Edge(vectorMap[row, column], vectorMap[row + 1, column], 10)); }
                         if (boolMap[row + 1, column + 1]) { output.addEdge(new Edge(vectorMap[row, column], vectorMap[row + 1, column + 1], 11)); }
                     }
@@ -79,7 +75,7 @@ namespace CSharpShowDijkstraWorking {
             TCODConsole.root.setBackgroundColor(new TCODColor(15, 15, 15));
             TCODConsole.root.setForegroundColor(TCODColor.lightestGrey);
             TCODConsole.root.clear();
-            for (int column = 0; column < windowLength; column++) {
+            for (int column = 0; column < windowHeight; column++) {
                 for (int row = 0; row < windowWidth; row++) {
                     TCODConsole.root.putChar(row, column, '#');
                 }
