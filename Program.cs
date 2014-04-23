@@ -10,19 +10,21 @@ using CSharpSimpleMapGen;
 using CSharpDijkstraAlgorithm;
 namespace CSharpShowDijkstraWorking {
     class Program {
-        const int windowWidth = 80, windowHeight = 50;
+        const int windowWidth = 30, windowHeight = 30;
         static void Main(string[] args) {
             TCODConsole.initRoot(windowWidth, windowHeight, "Showing Dijkstra Algorithm Working");
             TCODSystem.setFps(30);
             Graph map = makeMap();
+            bool closeWindow = false;
             TCODMouseData mData = TCODMouse.getStatus();
             List<Vector2D> path = new List<Vector2D>();
             bool newPath = false;
             do {
                 if (newPath) {
+                    drawMap(map.AllNodes, path, true);
                     newPath = !map.calculateShortestPath();
                 }
-                drawMap(map.AllNodes, path);
+                drawMap(map.AllNodes, path, false);
                 mData = TCODMouse.getStatus();
                 if (mData.RightButtonPressed) {
                     Vector2D rVector = getVector(mData.PixelX, mData.PixelY, map.AllNodes);
@@ -31,11 +33,20 @@ namespace CSharpShowDijkstraWorking {
                         newPath = true;
                     }
                 }
+                else if (mData.MiddleButtonPressed) {
+                    map = makeMap();
+                    path = new List<Vector2D>();
+                }
+                else if (mData.LeftButtonPressed) {
+                    if ((mData.PixelX / 8 == windowWidth - 1) && (mData.PixelY / 8 == 0)) {
+                        closeWindow = true;
+                    }
+                }
                 Vector2D lVector = getVector(mData.PixelX, mData.PixelY, map.AllNodes);
                 if ((lVector != null)&&(map.SourceVector != lVector)&&(map.SourceVector != null)) {
                     path = map.retrieveShortestPath(lVector);
                 }
-            } while (!TCODConsole.isWindowClosed());
+            } while (!closeWindow);
         }
         static Graph makeMap() {
             Graph output = new Graph();
@@ -71,9 +82,15 @@ namespace CSharpShowDijkstraWorking {
             }
             return null;
         }
-        static void drawMap(List<Vector2D> floormap, List<Vector2D> path) {
-            TCODConsole.root.setBackgroundColor(new TCODColor(15, 15, 15));
-            TCODConsole.root.setForegroundColor(TCODColor.lightestGrey);
+        static void drawMap(List<Vector2D> floormap, List<Vector2D> path, bool invertcolor) {
+            if (!invertcolor) {
+                TCODConsole.root.setBackgroundColor(new TCODColor(15, 15, 15));
+                TCODConsole.root.setForegroundColor(TCODColor.lightestGrey);
+            }
+            else {
+                TCODConsole.root.setForegroundColor(new TCODColor(15, 15, 15));
+                TCODConsole.root.setBackgroundColor(TCODColor.lightestGrey);
+            }
             TCODConsole.root.clear();
             for (int column = 0; column < windowHeight; column++) {
                 for (int row = 0; row < windowWidth; row++) {
@@ -100,6 +117,7 @@ namespace CSharpShowDijkstraWorking {
                     }
                 }
             }
+            TCODConsole.root.putChar(windowWidth - 1, 0, 'X');
             TCODConsole.flush();
         }
     }
