@@ -12,20 +12,27 @@ namespace CSharpShowDijkstraWorking {
     class Program {
         static void Main(string[] args) {
             TCODConsole.initRoot(80, 50, "Showing Dijkstra Algorithm Working");
+            TCODConsole test = new TCODConsole(80, 50);
             TCODSystem.setFps(30);
             Graph map = makeMap();
             drawMap(map.AllNodes);
-            TCODMouseData mData;
-            while (!TCODConsole.isWindowClosed()) {
-                TCODConsole.root.print(1,1, TCODSystem.getFps().ToString());
+            TCODMouseData mData = TCODMouse.getStatus();
+            do {
+                TCODConsole.root.clear();
+                drawMap(map.AllNodes);
+                test.print(1, 1, TCODSystem.getFps().ToString());
+                test.print(1, 2, mData.LeftButtonPressed.ToString());
+                test.print(1, 3, mData.PixelX.ToString());
+                test.print(1, 4, mData.PixelY.ToString());
+                TCODConsole.blit(test, 0, 0, 0, 0, TCODConsole.root, 0, 0);
                 TCODConsole.flush();
                 mData = TCODMouse.getStatus();
-                if (mData.LeftButtonPressed) {
-                    
-                }
-            }
-        }
+                if (mData.LeftButtonPressed)
+                {
 
+                }
+            } while (!TCODConsole.isWindowClosed());
+        }
         static Graph makeMap() {
             Graph output = new Graph();
             bool[,] boolMap = MapGen.newMap(80, 50, true);
