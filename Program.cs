@@ -7,14 +7,23 @@ using System.Threading.Tasks;
 using libtcod;
 using CSharpHelperCode;
 using CSharpSimpleMapGen;
-using CSharpDijkstraAlgorithm;
+using CSharpDijkstraAlgorithm; //the tiles are 8x8
 namespace CSharpShowDijkstraWorking {
     class Program {
         static void Main(string[] args) {
             TCODConsole.initRoot(80, 50, "Showing Dijkstra Algorithm Working");
+            TCODSystem.setFps(30);
             Graph map = makeMap();
             drawMap(map.AllNodes);
-            TCODConsole.waitForKeypress(true);            
+            TCODMouseData mData;
+            while (!TCODConsole.isWindowClosed()) {
+                TCODConsole.root.print(1,1, TCODSystem.getFps().ToString());
+                TCODConsole.flush();
+                mData = TCODMouse.getStatus();
+                if (mData.LeftButtonPressed) {
+                    
+                }
+            }
         }
 
         static Graph makeMap() {
