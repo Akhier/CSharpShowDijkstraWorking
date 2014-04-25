@@ -36,13 +36,13 @@ namespace CSharpShowDijkstraWorking {
         }
         public void addEdge(Edge edge) {
             _listOfEdges.Add(edge);
-            _connectedEdges[edge.PointA._vectorID].Add(edge);
-            _connectedEdges[edge.PointB._vectorID].Add(edge);
+            _connectedEdges[edge.PointA.VectorID].Add(edge);
+            _connectedEdges[edge.PointB.VectorID].Add(edge);
             this.Reset();
         }
         public void addVector(Vector2D node) {
             _listOfNodes.Add(node);
-            _connectedEdges[node._vectorID] = new List<Edge>();
+            _connectedEdges[node.VectorID] = new List<Edge>();
             this.Reset();
         }
         private List<Vector2D> getListOfVisitedNodes() {
@@ -59,7 +59,7 @@ namespace CSharpShowDijkstraWorking {
         }
         private PriorityQueue<Edge> getConnectedEdges(Vector2D startNode) {
             PriorityQueue<Edge> connectedEdges = new PriorityQueue<Edge>();
-            foreach (Edge currentedge in _connectedEdges[startNode._vectorID]) {
+            foreach (Edge currentedge in _connectedEdges[startNode.VectorID]) {
                 Vector2D otherVector = currentedge.getOtherVector(startNode);
                 if (otherVector != null) {
                     if (!otherVector.Visited) {

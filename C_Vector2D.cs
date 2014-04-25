@@ -19,7 +19,7 @@
             EdgeWithLowestCost = null;
         }
         public override string ToString() {
-            return "Vector ID: " + _vectorID + " X: " + X + " Y: " + Y + ";";
+            return "Vector ID: " + VectorID + " X: " + X + " Y: " + Y + ";";
         }
     }
 }
