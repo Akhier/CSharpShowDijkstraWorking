@@ -6,7 +6,6 @@ namespace CSharpShowDijkstraWorking {
         private Vector2D _sourceNode;
         private List<Vector2D> _listOfNodes;
         private List<Edge> _listOfEdges;
-        private Dictionary<int, PriorityQueue<Edge>> _computedconnectededges;
         public List<Vector2D> AllNodes {
             get { return _listOfNodes; }
         }
@@ -24,7 +23,6 @@ namespace CSharpShowDijkstraWorking {
         public Graph() {
             _listOfEdges = new List<Edge>();
             _listOfNodes = new List<Vector2D>();
-            _computedconnectededges = new Dictionary<int,PriorityQueue<Edge>>();
             _sourceNode = null;
         }
         private void Reset() {
@@ -63,18 +61,13 @@ namespace CSharpShowDijkstraWorking {
             return getListOfVisitedNodes().Count < _listOfNodes.Count;
         }
         private PriorityQueue<Edge> getConnectedEdges(Vector2D startNode) {
-            if (_computedconnectededges[startNode.VectorID] != null) {
-                return _computedconnectededges[startNode.VectorID];
-            }
-            else {
-                PriorityQueue<Edge> connectedEdges = new PriorityQueue<Edge>();
-                for (int i = 0; i < _listOfEdges.Count; i++) {
-                    if (_listOfEdges[i].getOtherVector(startNode) != null && !_listOfEdges[i].getOtherVector(startNode).Visited) {
-                        connectedEdges.Enqueue((Edge)_listOfEdges[i]);
-                    }
+            PriorityQueue<Edge> connectedEdges = new PriorityQueue<Edge>();
+            for (int i = 0; i < _listOfEdges.Count; i++) {
+                if (!_listOfEdges[i].getOtherVector(startNode).Visited) {
+                    connectedEdges.Enqueue((Edge)_listOfEdges[i]);
                 }
-                return connectedEdges;
             }
+            return connectedEdges;
         }
         private void performCalculationForAllNodes() {
             Vector2D currentNode = _sourceNode;

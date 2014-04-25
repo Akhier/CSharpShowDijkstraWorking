@@ -21,10 +21,10 @@ namespace CSharpShowDijkstraWorking {
             _edgeID = ++_edgeIDCount;
         }
         public Vector2D getOtherVector(Vector2D baseVector) {
-            if (baseVector == _pointA) {
+            if (baseVector.VectorID == _pointA.VectorID) {
                 return _pointB;
             }
-            else if (baseVector == _pointB) {
+            else if (baseVector.VectorID == _pointB.VectorID) {
                 return _pointA;
             }
             else {
