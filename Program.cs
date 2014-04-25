@@ -10,7 +10,7 @@ using CSharpSimpleMapGen;
 //using CSharpDijkstraAlgorithm;
 namespace CSharpShowDijkstraWorking {
     class Program {
-        const int windowWidth = 30, windowHeight = 30;
+        const int windowWidth = 20, windowHeight = 20;
         static void Main(string[] args) {
             TCODConsole.initRoot(windowWidth, windowHeight, "Showing Dijkstra Algorithm Working");
             TCODSystem.setFps(30);

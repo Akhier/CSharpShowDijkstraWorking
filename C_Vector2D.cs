@@ -2,7 +2,7 @@
     public class Vector2D {
         public const int INFINITY = -1;
         public int X, Y, AggregateCost;
-        private int _vectorID;
+        internal int _vectorID;
         public bool Deadend, Visited;
         private static int _vectorIDCount = -1;
         public Edge EdgeWithLowestCost;

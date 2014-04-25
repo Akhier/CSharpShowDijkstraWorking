@@ -21,10 +21,10 @@ namespace CSharpShowDijkstraWorking {
             _edgeID = ++_edgeIDCount;
         }
         public Vector2D getOtherVector(Vector2D baseVector) {
-            if (baseVector.VectorID == _pointA.VectorID) {
+            if (baseVector._vectorID == _pointA._vectorID) {
                 return _pointB;
             }
-            else if (baseVector.VectorID == _pointB.VectorID) {
+            else if (baseVector._vectorID == _pointB._vectorID) {
                 return _pointA;
             }
             else {
@@ -32,7 +32,7 @@ namespace CSharpShowDijkstraWorking {
             }
         }
         public override string ToString() {
-            return "Edge ID: " + _edgeID + " - Connected to vectors " + _pointA.VectorID + " and " + _pointB.VectorID + " at a cost of " + Cost;
+            return "Edge ID: " + _edgeID + " - Connected to vectors " + _pointA._vectorID + " and " + _pointB._vectorID + " at a cost of " + Cost;
         }
         public int CompareTo(Edge otherEdge) {
             return this.Cost.CompareTo(otherEdge.Cost);
