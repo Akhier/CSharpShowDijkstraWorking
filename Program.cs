@@ -50,7 +50,12 @@ namespace CSharpShowDijkstraWorking {
         }
         static Graph makeMap() {
             Graph output = new Graph();
-            bool[,] boolMap = MapGen.newMap(windowWidth, windowHeight, true);
+            bool[,] boolMap = new bool[windowWidth, windowHeight];//MapGen.newMap(windowWidth, windowHeight, true);
+            for (int column = 0; column < windowHeight; column++) {
+                for (int row = 0; row < windowWidth; row++) {
+                    boolMap[row, column] = ((column < 3) || (column > windowHeight - 4) || (row < 3) || (row > windowWidth - 4)) ? false : true;
+                }
+            }
             Vector2D[,] vectorMap = new Vector2D[windowWidth, windowHeight];
             for (int column = 0; column < windowHeight; column++) {
                 for (int row = 0; row < windowWidth; row++) {
