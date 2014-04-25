@@ -28,7 +28,7 @@ namespace CSharpShowDijkstraWorking {
                 return _pointA;
             }
             else {
-                return null;   //if you manage to have a vector which isn't A or B
+                return null;
             }
         }
         public override string ToString() {
