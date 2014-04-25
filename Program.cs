@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using libtcod;
 using CSharpHelperCode;
 using CSharpSimpleMapGen;
-using CSharpDijkstraAlgorithm;
+//using CSharpDijkstraAlgorithm;
 namespace CSharpShowDijkstraWorking {
     class Program {
         const int windowWidth = 30, windowHeight = 30;
