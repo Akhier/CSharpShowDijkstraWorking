@@ -38,7 +38,7 @@ namespace CSharpShowDijkstraWorking {
                     path = new List<Vector2D>();
                 }
                 else if (mData.LeftButtonPressed) {
-                    if ((mData.PixelX / 8 == windowWidth - 1) && (mData.PixelY / 8 == 0)) {
+                    if ((mData.PixelX / 8 >= windowWidth - 7) && (mData.PixelY / 8 == 0)) {
                         closeWindow = true;
                     }
                 }
@@ -117,7 +117,7 @@ namespace CSharpShowDijkstraWorking {
                     }
                 }
             }
-            TCODConsole.root.putChar(windowWidth - 1, 0, 'X');
+            TCODConsole.root.print(windowWidth - 7, 0, "Close X");
             TCODConsole.flush();
         }
     }
