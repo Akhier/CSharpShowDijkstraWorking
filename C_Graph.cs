@@ -64,8 +64,9 @@ namespace CSharpShowDijkstraWorking {
             PriorityQueue<Edge> connectedEdges = new PriorityQueue<Edge>();
             int edgeCount = _listOfEdges.Count;
             for (int i = 0; i < edgeCount; i++) {
-                if (_listOfEdges[i].getOtherVector(startNode) != null) {
-                    if (!_listOfEdges[i].getOtherVector(startNode).Visited) {
+                Vector2D otherVector = _listOfEdges[i].getOtherVector(startNode);
+                if (otherVector != null) {
+                    if (!otherVector.Visited) {
                         connectedEdges.Enqueue((Edge)_listOfEdges[i]);
                     }
                 }
