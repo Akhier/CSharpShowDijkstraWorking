@@ -69,7 +69,10 @@
   </Binaries>
   <Reports>
     <Report>
-      <Path>CSharpShowDijkstraWorking140424(1).vsp</Path>
+      <Path>CSharpShowDijkstraWorking140424.vsp</Path>
+    </Report>
+    <Report>
+      <Path>CSharpShowDijkstraWorking140424(2).vsp</Path>
     </Report>
   </Reports>
   <Launches>
