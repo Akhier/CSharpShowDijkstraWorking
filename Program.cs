@@ -10,7 +10,7 @@ using CSharpSimpleMapGen;
 //using CSharpDijkstraAlgorithm;
 namespace CSharpShowDijkstraWorking {
     class Program {
-        const int windowWidth = 15, windowHeight = 15;
+        const int windowWidth = 20, windowHeight = 20;
         static void Main(string[] args) {
             //TCODConsole.initRoot(windowWidth, windowHeight, "Showing Dijkstra Algorithm Working");
             //TCODSystem.setFps(30);
@@ -47,7 +47,7 @@ namespace CSharpShowDijkstraWorking {
             //        path = map.retrieveShortestPath(lVector);
             //    }
             //} while (!closeWindow);
-            map.SourceVector = getVector(3, 3, map.AllNodes);
+            map.SourceVector = getVector(3*8, 3*8, map.AllNodes);
             newPath = !map.calculateShortestPath();
         }
         static Graph makeMap() {

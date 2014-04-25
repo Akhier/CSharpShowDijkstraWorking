@@ -6,6 +6,7 @@ namespace CSharpShowDijkstraWorking {
         private Vector2D _sourceNode;
         private List<Vector2D> _listOfNodes;
         private List<Edge> _listOfEdges;
+        private Dictionary<int, List<Edge>> _connectedEdges;
         public List<Vector2D> AllNodes {
             get { return _listOfNodes; }
         }
@@ -23,6 +24,7 @@ namespace CSharpShowDijkstraWorking {
         public Graph() {
             _listOfEdges = new List<Edge>();
             _listOfNodes = new List<Vector2D>();
+            _connectedEdges = new Dictionary<int, List<Edge>>();
             _sourceNode = null;
         }
         private void Reset() {
@@ -34,18 +36,13 @@ namespace CSharpShowDijkstraWorking {
         }
         public void addEdge(Edge edge) {
             _listOfEdges.Add(edge);
-            this.Reset();
-        }
-        public void addEdge(Vector2D pointA, Vector2D pointB, int cost) {
-            _listOfEdges.Add(new Edge(pointA, pointB, cost));
+            _connectedEdges[edge.PointA._vectorID].Add(edge);
+            _connectedEdges[edge.PointB._vectorID].Add(edge);
             this.Reset();
         }
         public void addVector(Vector2D node) {
             _listOfNodes.Add(node);
-            this.Reset();
-        }
-        public void addVector(int x, int y, bool deadend) {
-            _listOfNodes.Add(new Vector2D(x, y, deadend));
+            _connectedEdges[node._vectorID] = new List<Edge>();
             this.Reset();
         }
         private List<Vector2D> getListOfVisitedNodes() {
@@ -62,7 +59,7 @@ namespace CSharpShowDijkstraWorking {
         }
         private PriorityQueue<Edge> getConnectedEdges(Vector2D startNode) {
             PriorityQueue<Edge> connectedEdges = new PriorityQueue<Edge>();
-            foreach (Edge currentedge in _listOfEdges) {
+            foreach (Edge currentedge in _connectedEdges[startNode._vectorID]) {
                 Vector2D otherVector = currentedge.getOtherVector(startNode);
                 if (otherVector != null) {
                     if (!otherVector.Visited) {
