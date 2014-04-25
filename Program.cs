@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using libtcod;
 using CSharpHelperCode;
 using CSharpSimpleMapGen;
-//using CSharpDijkstraAlgorithm;
+using CSharpDijkstraAlgorithm;
 namespace CSharpShowDijkstraWorking {
     class Program {
-        const int windowWidth = 100, windowHeight = 100;
+        const int windowWidth = 80, windowHeight = 50;
         static void Main(string[] args) {
             TCODConsole.initRoot(windowWidth, windowHeight, "Showing Dijkstra Algorithm Working");
             TCODSystem.setFps(30);
